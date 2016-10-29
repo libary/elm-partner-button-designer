@@ -17,7 +17,7 @@ codeStr model =
     ,urlLink model
     ,"\" title=\"Подать объявление о продаже или сдаче в аренду недвижимости сразу на 100 сайтов\">"
     ,model.text
-    ,"</a>"]
+    ,"</a><link rel=\"stylesheet\" type=\"text/css\" href=\"http://razmestim100.ru/content/designer\" />"]
 
 colorClass : Color -> String
 colorClass color =

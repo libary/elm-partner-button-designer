@@ -11,7 +11,8 @@ import Helpers exposing (..)
 view : Model -> Html Msg
 view model =
   div [class "row"]
-    [div [class "col-sm-5"] [
+    [div [class "col-sm-5"
+         ,style [("border-right", "1px solid lightgrey")]] [
         Html.form [] [
           titleView model
           ,colorView model
@@ -48,7 +49,7 @@ codeView model =
     label [] [text "Код кнопки"]
     ,div [] [
       textarea [class "form-control"
-                ,rows 4
+                ,rows 6
                 ,attribute "onclick" "this.select();"] [
         text (codeStr model)
       ]
@@ -58,7 +59,7 @@ codeView model =
 titleView : Model -> Html Msg
 titleView model =
   div [class "form-group"] [
-    label [] [text "Текст кнопки"]
+    label [] [text "Текст"]
     ,input [type' "text"
             ,class "form-control"
             ,placeholder "напишите текст для кнопки"

@@ -8490,7 +8490,7 @@ var _user$project$Helpers$codeStr = function (model) {
 				_user$project$Helpers$urlLink(model),
 				'\" title=\"Подать объявление о продаже или сдаче в аренду недвижимости сразу на 100 сайтов\">',
 				model.text,
-				'</a>'
+				'</a><link rel=\"stylesheet\" type=\"text/css\" href=\"http://razmestim100.ru/content/designer\" />'
 			]));
 };
 
@@ -8863,7 +8863,7 @@ var _user$project$View$titleView = function (model) {
 					[]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text('Текст кнопки')
+						_elm_lang$html$Html$text('Текст')
 					])),
 				A2(
 				_elm_lang$html$Html$input,
@@ -8907,7 +8907,7 @@ var _user$project$View$codeView = function (model) {
 						_elm_lang$core$Native_List.fromArray(
 							[
 								_elm_lang$html$Html_Attributes$class('form-control'),
-								_elm_lang$html$Html_Attributes$rows(4),
+								_elm_lang$html$Html_Attributes$rows(6),
 								A2(_elm_lang$html$Html_Attributes$attribute, 'onclick', 'this.select();')
 							]),
 						_elm_lang$core$Native_List.fromArray(
@@ -8994,7 +8994,12 @@ var _user$project$View$view = function (model) {
 				_elm_lang$html$Html$div,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html_Attributes$class('col-sm-5')
+						_elm_lang$html$Html_Attributes$class('col-sm-5'),
+						_elm_lang$html$Html_Attributes$style(
+						_elm_lang$core$Native_List.fromArray(
+							[
+								{ctor: '_Tuple2', _0: 'border-right', _1: '1px solid lightgrey'}
+							]))
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
