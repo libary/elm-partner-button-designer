@@ -13,6 +13,8 @@ codeStr model =
     ,borderRadius model.corner
     ,";font-size:"
     ,textSize model.size
+    ,";font-weight:"
+    ,fontWeight model.font
     ,";\" href=\""
     ,urlLink model
     ,"\" title=\"Подать объявление о продаже или сдаче в аренду недвижимости сразу на 100 сайтов\">"
@@ -34,6 +36,16 @@ colorClass color =
       "r100-button-danger"
     Default ->
       "r100-button-default"
+    White ->
+      "r100-button-white"
+
+fontWeight : Font -> String
+fontWeight font =
+  case font of
+    Normal ->
+      "normal"
+    Bold ->
+      "bold"
 
 borderRadius : Corner -> String
 borderRadius corner =
@@ -53,4 +65,4 @@ urlLink model =
     HomePage ->
       "http://razmestim100.ru/?ref=" ++ model.ref
     CreateAdvPage ->
-      "http://razmestim100.ru/add?ref=" ++ model.ref
+      "http://razmestim100.ru/addbyform?ref=" ++ model.ref

@@ -8407,19 +8407,22 @@ var _krisajenkins$elm_exts$Exts_Html$matchText = F3(
 			_krisajenkins$elm_exts$Exts_List$rest(allSegmentBoundaries));
 	});
 
-var _user$project$Type$Model = F6(
-	function (a, b, c, d, e, f) {
-		return {text: a, color: b, corner: c, size: d, link: e, ref: f};
+var _user$project$Type$Model = F7(
+	function (a, b, c, d, e, f, g) {
+		return {text: a, color: b, size: c, font: d, corner: e, link: f, ref: g};
 	});
 var _user$project$Type$Flags = function (a) {
 	return {ref: a};
 };
+var _user$project$Type$White = {ctor: 'White'};
+var _user$project$Type$Default = {ctor: 'Default'};
 var _user$project$Type$Danger = {ctor: 'Danger'};
 var _user$project$Type$Warning = {ctor: 'Warning'};
 var _user$project$Type$Info = {ctor: 'Info'};
 var _user$project$Type$Success = {ctor: 'Success'};
 var _user$project$Type$Primary = {ctor: 'Primary'};
-var _user$project$Type$Default = {ctor: 'Default'};
+var _user$project$Type$Bold = {ctor: 'Bold'};
+var _user$project$Type$Normal = {ctor: 'Normal'};
 var _user$project$Type$Round = {ctor: 'Round'};
 var _user$project$Type$Sharp = {ctor: 'Sharp'};
 var _user$project$Type$CreateAdvPage = {ctor: 'CreateAdvPage'};
@@ -8427,11 +8430,14 @@ var _user$project$Type$HomePage = {ctor: 'HomePage'};
 var _user$project$Type$ChangeLink = function (a) {
 	return {ctor: 'ChangeLink', _0: a};
 };
-var _user$project$Type$ChangeSize = function (a) {
-	return {ctor: 'ChangeSize', _0: a};
-};
 var _user$project$Type$ChangeCorner = function (a) {
 	return {ctor: 'ChangeCorner', _0: a};
+};
+var _user$project$Type$ChangeFont = function (a) {
+	return {ctor: 'ChangeFont', _0: a};
+};
+var _user$project$Type$ChangeSize = function (a) {
+	return {ctor: 'ChangeSize', _0: a};
 };
 var _user$project$Type$ChangeColor = function (a) {
 	return {ctor: 'ChangeColor', _0: a};
@@ -8445,7 +8451,7 @@ var _user$project$Helpers$urlLink = function (model) {
 	if (_p0.ctor === 'HomePage') {
 		return A2(_elm_lang$core$Basics_ops['++'], 'http://razmestim100.ru/?ref=', model.ref);
 	} else {
-		return A2(_elm_lang$core$Basics_ops['++'], 'http://razmestim100.ru/add?ref=', model.ref);
+		return A2(_elm_lang$core$Basics_ops['++'], 'http://razmestim100.ru/addbyform?ref=', model.ref);
 	}
 };
 var _user$project$Helpers$textSize = function (size) {
@@ -8459,9 +8465,17 @@ var _user$project$Helpers$borderRadius = function (corner) {
 		return '7px';
 	}
 };
+var _user$project$Helpers$fontWeight = function (font) {
+	var _p2 = font;
+	if (_p2.ctor === 'Normal') {
+		return 'normal';
+	} else {
+		return 'bold';
+	}
+};
 var _user$project$Helpers$colorClass = function (color) {
-	var _p2 = color;
-	switch (_p2.ctor) {
+	var _p3 = color;
+	switch (_p3.ctor) {
 		case 'Primary':
 			return 'r100-button-primary';
 		case 'Success':
@@ -8472,8 +8486,10 @@ var _user$project$Helpers$colorClass = function (color) {
 			return 'r100-button-warning';
 		case 'Danger':
 			return 'r100-button-danger';
-		default:
+		case 'Default':
 			return 'r100-button-default';
+		default:
+			return 'r100-button-white';
 	}
 };
 var _user$project$Helpers$codeStr = function (model) {
@@ -8486,6 +8502,8 @@ var _user$project$Helpers$codeStr = function (model) {
 				_user$project$Helpers$borderRadius(model.corner),
 				';font-size:',
 				_user$project$Helpers$textSize(model.size),
+				';font-weight:',
+				_user$project$Helpers$fontWeight(model.font),
 				';\" href=\"',
 				_user$project$Helpers$urlLink(model),
 				'\" title=\"Подать объявление о продаже или сдаче в аренду недвижимости сразу на 100 сайтов\">',
@@ -8652,6 +8670,85 @@ var _user$project$View$cornerView = function (model) {
 					]))
 			]));
 };
+var _user$project$View$fontView = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('form-group')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$label,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Шрифт')
+					])),
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('radio')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$label,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$input,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$type$('radio'),
+										_elm_lang$html$Html_Attributes$name('font'),
+										_elm_lang$html$Html_Attributes$checked(
+										_elm_lang$core$Native_Utils.eq(model.font, _user$project$Type$Normal)),
+										_elm_lang$html$Html_Events$onClick(
+										_user$project$Type$ChangeFont(_user$project$Type$Normal))
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[])),
+								_elm_lang$html$Html$text('нормальный')
+							]))
+					])),
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('radio')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$label,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$input,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$type$('radio'),
+										_elm_lang$html$Html_Attributes$name('font'),
+										_elm_lang$html$Html_Attributes$checked(
+										_elm_lang$core$Native_Utils.eq(model.font, _user$project$Type$Bold)),
+										_elm_lang$html$Html_Events$onClick(
+										_user$project$Type$ChangeFont(_user$project$Type$Bold))
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[])),
+								_elm_lang$html$Html$text('жирный')
+							]))
+					]))
+			]));
+};
 var _user$project$View$sizeView = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -8674,8 +8771,8 @@ var _user$project$View$sizeView = function (model) {
 				_elm_lang$core$Native_List.fromArray(
 					[
 						_elm_lang$html$Html_Attributes$type$('range'),
-						_elm_lang$html$Html_Attributes$min('12'),
-						_elm_lang$html$Html_Attributes$max('40'),
+						_elm_lang$html$Html_Attributes$min('10'),
+						_elm_lang$html$Html_Attributes$max('50'),
 						_elm_lang$html$Html_Events$onInput(_user$project$Type$ChangeSize),
 						_elm_lang$html$Html_Attributes$value(model.size)
 					]),
@@ -8844,6 +8941,29 @@ var _user$project$View$colorView = function (model) {
 								_user$project$Type$ChangeColor(_user$project$Type$Default))
 							]),
 						_elm_lang$core$Native_List.fromArray(
+							[])),
+						_elm_lang$html$Html$text(_krisajenkins$elm_exts$Exts_Html$nbsp),
+						A2(
+						_elm_lang$html$Html$button,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$classList(
+								_elm_lang$core$Native_List.fromArray(
+									[
+										{ctor: '_Tuple2', _0: 'r100-button', _1: true},
+										{ctor: '_Tuple2', _0: 'r100-button-white', _1: true},
+										{ctor: '_Tuple2', _0: 'r100-button-ss', _1: true},
+										{
+										ctor: '_Tuple2',
+										_0: 'r100-button-active',
+										_1: _elm_lang$core$Native_Utils.eq(model.color, _user$project$Type$White)
+									}
+									])),
+								_elm_lang$html$Html_Attributes$type$('button'),
+								_elm_lang$html$Html_Events$onClick(
+								_user$project$Type$ChangeColor(_user$project$Type$White))
+							]),
+						_elm_lang$core$Native_List.fromArray(
 							[]))
 					]))
 			]));
@@ -8967,6 +9087,11 @@ var _user$project$View$preView = function (model) {
 										ctor: '_Tuple2',
 										_0: 'font-size',
 										_1: _user$project$Helpers$textSize(model.size)
+									},
+										{
+										ctor: '_Tuple2',
+										_0: 'font-weight',
+										_1: _user$project$Helpers$fontWeight(model.font)
 									}
 									])),
 								_elm_lang$html$Html_Attributes$target('_blank'),
@@ -9012,6 +9137,7 @@ var _user$project$View$view = function (model) {
 								_user$project$View$titleView(model),
 								_user$project$View$colorView(model),
 								_user$project$View$sizeView(model),
+								_user$project$View$fontView(model),
 								_user$project$View$cornerView(model),
 								_user$project$View$linkView(model)
 							]))
@@ -9050,20 +9176,28 @@ var _user$project$PartnerButtonDesigner$update = F2(
 						{color: _p0._0}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
-			case 'ChangeCorner':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{corner: _p0._0}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
 			case 'ChangeSize':
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{size: _p0._0}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'ChangeFont':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{font: _p0._0}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'ChangeCorner':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{corner: _p0._0}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
@@ -9082,7 +9216,7 @@ var _user$project$PartnerButtonDesigner$subscriptions = function (model) {
 var _user$project$PartnerButtonDesigner$init = function (flags) {
 	return {
 		ctor: '_Tuple2',
-		_0: A6(_user$project$Type$Model, '+ Подать объявление', _user$project$Type$Primary, _user$project$Type$Sharp, '15', _user$project$Type$HomePage, flags.ref),
+		_0: A7(_user$project$Type$Model, '+ Подать объявление', _user$project$Type$Primary, '15', _user$project$Type$Normal, _user$project$Type$Sharp, _user$project$Type$HomePage, flags.ref),
 		_1: _elm_lang$core$Platform_Cmd$none
 	};
 };

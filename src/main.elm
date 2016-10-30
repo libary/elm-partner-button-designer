@@ -11,7 +11,7 @@ main =
 
 init : Flags -> ( Model, Cmd Msg )
 init flags =
-  (Model "+ Подать объявление" Primary Sharp "15" HomePage flags.ref, Cmd.none)
+  (Model "+ Подать объявление" Primary "15" Normal Sharp HomePage flags.ref, Cmd.none)
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
@@ -26,11 +26,14 @@ update msg model =
     ChangeColor newColor ->
       ({ model | color = newColor }, Cmd.none)
 
-    ChangeCorner newCorner ->
-      ({ model | corner = newCorner}, Cmd.none)
-
     ChangeSize newSize ->
       ({ model | size = newSize }, Cmd.none)
+
+    ChangeFont newFont ->
+      ({ model | font = newFont }, Cmd.none)
+
+    ChangeCorner newCorner ->
+      ({ model | corner = newCorner}, Cmd.none)
 
     ChangeLink newLink ->
       ({ model | link = newLink }, Cmd.none)

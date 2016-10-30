@@ -1,29 +1,35 @@
 module Type exposing (..)
 
 type Color
-  = Default
-  |Primary
-  |Success
-  |Info
-  |Warning
-  |Danger
-
-type Corner
-  = Sharp
-  |Round
+  = Primary
+  | Success
+  | Info
+  | Warning
+  | Danger
+  | Default
+  | White
 
 type alias Size = String
 
+type Font
+  = Normal
+  | Bold
+
+type Corner
+  = Sharp
+  | Round
+
 type Link
   = HomePage
-  |CreateAdvPage
+  | CreateAdvPage
 
 type alias Model =
   {
     text : String,
     color : Color,
-    corner : Corner,
     size : Size,
+    font : Font,
+    corner : Corner,
     link : Link,
     ref : String
 }
@@ -31,9 +37,12 @@ type alias Model =
 type Msg
   = ChangeText String
   | ChangeColor Color
-  | ChangeCorner Corner
   | ChangeSize Size
+  | ChangeFont Font
+  | ChangeCorner Corner
   | ChangeLink Link
 
 type alias Flags =
-  { ref : String }
+  {
+    ref : String
+  }

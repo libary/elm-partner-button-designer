@@ -13,16 +13,17 @@ view model =
   div [class "row"]
     [div [class "col-sm-5"
          ,style [("border-right", "1px solid lightgrey")]] [
-        Html.form [] [
-          titleView model
+        Html.form []
+          [titleView model
           ,colorView model
           ,sizeView model
+          ,fontView model
           ,cornerView model
           ,linkView model]
         -- ,text (toString model)
       ]
-      ,div [class "col-sm-7"] [
-        preView model
+      ,div [class "col-sm-7"]
+        [preView model
         ,codeView model]
     ]
 
@@ -36,7 +37,8 @@ preView model =
           (colorClass model.color, True)]
         ,style [
           ("border-radius", borderRadius model.corner),
-          ("font-size", textSize model.size)]
+          ("font-size", textSize model.size),
+          ("font-weight", fontWeight model.font)]
         ,target "_blank"
         ,title "Подать объявление о продаже или сдаче в аренду недвижимости на 100 сайтов"
         ,href (urlLink model)] [text model.text]
@@ -119,6 +121,14 @@ colorView model =
                 ("r100-button-active", model.color == Default)]
               ,type' "button"
               ,onClick (ChangeColor Default)] []
+      ,text nbsp
+      ,button [classList [
+                ("r100-button", True),
+                ("r100-button-white", True),
+                ("r100-button-ss", True),
+                ("r100-button-active", model.color == White)]
+              ,type' "button"
+              ,onClick (ChangeColor White)] []
     ]
   ]
 
@@ -127,10 +137,32 @@ sizeView model =
   div [class "form-group"] [
     label [] [text "Размер"]
     ,input [type' "range"
-            ,Attr.min "12"
-            ,Attr.max "40"
+            ,Attr.min "10"
+            ,Attr.max "50"
             ,onInput ChangeSize
             ,value model.size] []
+  ]
+
+fontView : Model -> Html Msg
+fontView model =
+  div [class "form-group"] [
+    label [] [text "Шрифт"]
+    ,div [class "radio"] [
+      label [] [
+        input [ type' "radio"
+                ,name "font"
+                ,checked (model.font == Normal)
+                ,onClick (ChangeFont Normal) ] []
+        ,text "нормальный"]
+    ]
+    ,div [class "radio"] [
+      label [] [
+        input [ type' "radio"
+                ,name "font"
+                ,checked (model.font == Bold)
+                ,onClick (ChangeFont Bold) ] []
+        ,text "жирный"]
+    ]
   ]
 
 cornerView : Model -> Html Msg
