@@ -21,7 +21,7 @@ type Corner
 
 type Link
   = HomePage
-  | CreateAdvPage
+  | CreatePage
 
 type alias Model =
   {
@@ -31,7 +31,7 @@ type alias Model =
     font : Font,
     corner : Corner,
     link : Link,
-    ref : String
+    flags : Flags
 }
 
 type Msg
@@ -44,5 +44,10 @@ type Msg
 
 type alias Flags =
   {
-    ref : String
+    title : String,
+    homePageUrl : String,
+    createPageUrl : String,
+    refName : String,
+    refValue : String,
+    cssUrl : String
   }

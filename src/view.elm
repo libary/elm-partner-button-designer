@@ -31,7 +31,7 @@ preView : Model -> Html Msg
 preView model =
   div [class "form-group"] [
     label [] [text "Так будет выглядеть кнопка"]
-    ,div [][
+    ,div [] [
       a [classList [
           ("r100-button", True),
           (colorClass model.color, True)]
@@ -40,7 +40,7 @@ preView model =
           ("font-size", textSize model.size),
           ("font-weight", fontWeight model.font)]
         ,target "_blank"
-        ,title "Подать объявление о продаже или сдаче в аренду недвижимости на 100 сайтов"
+        ,title model.flags.title
         ,href (urlLink model)] [text model.text]
     ]
   ]
@@ -203,8 +203,8 @@ linkView model =
       label [] [
         input [ type' "radio"
                 ,name "link"
-                ,checked (model.link == CreateAdvPage)
-                ,onClick (ChangeLink CreateAdvPage)] []
+                ,checked (model.link == CreatePage)
+                ,onClick (ChangeLink CreatePage)] []
         ,text "страница подачи объявления"]
     ]
   ]

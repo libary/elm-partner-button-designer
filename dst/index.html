@@ -12,11 +12,21 @@
 </head>
 
 <body>
-  <div id="designer"></div>
+  <div class="container">
+    <div id="designer" />
+  </div>
   <script src="designer.js"></script>
   <script>
     var node = document.getElementById('designer');
-    var app = Elm.PartnerButtonDesigner.embed(node, {ref : "238"});
+    var app = Elm.PartnerButtonDesigner.embed(node,
+      {
+        title : "Подать объявление о продаже или сдаче в аренду недвижимости на 100 сайтов",
+        homePageUrl : "http://razmestim100.ru/",
+        createPageUrl : "http://razmestim100.ru/addbyform",
+        refName : "ref",
+        refValue : "123",
+        cssUrl : "http://razmestim100.ru/content/designer"
+      });
   </script>
 </body>
 

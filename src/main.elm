@@ -11,7 +11,22 @@ main =
 
 init : Flags -> ( Model, Cmd Msg )
 init flags =
-  (Model "+ Подать объявление" Primary "15" Normal Sharp HomePage flags.ref, Cmd.none)
+  ({
+    text = "+ Подать объявление",
+    color = Primary,
+    size = "15",
+    font = Normal,
+    corner = Sharp,
+    link = HomePage,
+    flags = {
+              title = flags.title,
+              homePageUrl = flags.homePageUrl,
+              createPageUrl = flags.createPageUrl,
+              refName = flags.refName,
+              refValue = flags.refValue,
+              cssUrl = flags.cssUrl
+            }
+  }, Cmd.none)
 
 subscriptions : Model -> Sub Msg
 subscriptions model =

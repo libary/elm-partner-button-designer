@@ -1,6 +1,7 @@
 module Helpers exposing(..)
 
 import String
+import Http
 
 import Type exposing (..)
 
@@ -17,9 +18,13 @@ codeStr model =
     ,fontWeight model.font
     ,";\" href=\""
     ,urlLink model
-    ,"\" title=\"Подать объявление о продаже или сдаче в аренду недвижимости сразу на 100 сайтов\">"
+    ,"\" title=\""
+    ,model.flags.title
+    ,"\">"
     ,model.text
-    ,"</a><link rel=\"stylesheet\" type=\"text/css\" href=\"http://razmestim100.ru/content/designer\" />"]
+    ,"</a><link rel=\"stylesheet\" type=\"text/css\" href=\""
+    ,model.flags.cssUrl
+    ,"\" />"]
 
 colorClass : Color -> String
 colorClass color =
@@ -61,8 +66,11 @@ textSize size =
 
 urlLink : Model -> String
 urlLink model =
-  case model.link of
-    HomePage ->
-      "http://razmestim100.ru/?ref=" ++ model.ref
-    CreateAdvPage ->
-      "http://razmestim100.ru/addbyform?ref=" ++ model.ref
+  let
+    refs = [(model.flags.refName, model.flags.refValue)]
+  in
+    case model.link of
+      HomePage ->
+        Http.url model.flags.homePageUrl refs
+      CreatePage ->
+        Http.url model.flags.createPageUrl refs
