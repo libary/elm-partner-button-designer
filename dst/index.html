@@ -18,14 +18,15 @@
   <script src="designer.js"></script>
   <script>
     var node = document.getElementById('designer');
+    var baseUrl = "http://" + "r" + "a" + "z" + "m" + "e" + "s" + "t" + "i" + "m" + "1" + "0" + "0" + ".ru/";
     var app = Elm.PartnerButtonDesigner.embed(node,
       {
         title : "Подать объявление о продаже или сдаче в аренду недвижимости на 100 сайтов",
-        homePageUrl : "http://razmestim100.ru/",
-        createPageUrl : "http://razmestim100.ru/addbyform",
+        homePageUrl : baseUrl,
+        createPageUrl : baseUrl + "addbyform",
         refName : "ref",
         refValue : "123",
-        cssUrl : "http://razmestim100.ru/content/designer"
+        cssUrl : baseUrl + "content/designer"
       });
   </script>
 </body>
