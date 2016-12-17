@@ -1,54 +1,58 @@
 module PartnerButtonDesigner exposing (..)
 
-import Html.App as App
-
+import Html as App
 import Type exposing (..)
 import View exposing (..)
 
-main : Program Flags
+
+main : Program Flags Model Msg
 main =
-  App.programWithFlags { init = init, update = update, subscriptions = subscriptions , view = view }
+    App.programWithFlags { init = init, update = update, subscriptions = subscriptions, view = view }
+
 
 init : Flags -> ( Model, Cmd Msg )
 init flags =
-  ({
-    text = "+ Подать объявление",
-    color = Primary,
-    size = "15",
-    font = Normal,
-    corner = Sharp,
-    link = HomePage,
-    flags = {
-              title = flags.title,
-              homePageUrl = flags.homePageUrl,
-              createPageUrl = flags.createPageUrl,
-              refName = flags.refName,
-              refValue = flags.refValue,
-              cssUrl = flags.cssUrl
+    ( { text = "+ Подать объявление"
+      , color = Primary
+      , size = "15"
+      , font = Normal
+      , corner = Sharp
+      , link = HomePage
+      , flags =
+            { title = flags.title
+            , homePageUrl = flags.homePageUrl
+            , createPageUrl = flags.createPageUrl
+            , refName = flags.refName
+            , refValue = flags.refValue
+            , cssUrl = flags.cssUrl
             }
-  }, Cmd.none)
+      }
+    , Cmd.none
+    )
+
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-  Sub.none
+    Sub.none
 
-update : Msg -> Model -> (Model, Cmd Msg)
+
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-  case msg of
-    ChangeText newText ->
-      ({ model | text = newText }, Cmd.none)
+    case msg of
+        ChangeText newText ->
+            ( { model | text = newText }, Cmd.none )
 
-    ChangeColor newColor ->
-      ({ model | color = newColor }, Cmd.none)
+        ChangeColor newColor ->
+            ( { model | color = newColor }, Cmd.none )
 
-    ChangeSize newSize ->
-      ({ model | size = newSize }, Cmd.none)
+        ChangeSize newSize ->
+            ( { model | size = newSize }, Cmd.none )
 
-    ChangeFont newFont ->
-      ({ model | font = newFont }, Cmd.none)
+        ChangeFont newFont ->
+            ( { model | font = newFont }, Cmd.none )
 
-    ChangeCorner newCorner ->
-      ({ model | corner = newCorner}, Cmd.none)
+        ChangeCorner newCorner ->
+            ( { model | corner = newCorner }, Cmd.none )
 
-    ChangeLink newLink ->
-      ({ model | link = newLink }, Cmd.none)
+        ChangeLink newLink ->
+            ( { model | link = newLink }, Cmd.none )
